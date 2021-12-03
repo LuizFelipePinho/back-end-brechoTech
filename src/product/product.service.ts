@@ -20,8 +20,16 @@ export class ProductService {
     return products;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async findOne(id: number) {
+    const product = await this.db.product.findUnique({
+      where: { id: id },
+    });
+
+    if (!product) {
+      throw new NotFoundException('Id not found');
+    }
+
+    return product;
   }
 
   async update(
