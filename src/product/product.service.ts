@@ -43,7 +43,15 @@ export class ProductService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number): Promise<Product> {
+    const productOne = await this.db.product.delete({
+      where: { id: id },
+    });
+
+    if (!productOne) {
+      throw new NotFoundException('Id not found');
+    } else {
+      return productOne;
+    }
   }
 }
