@@ -18,6 +18,8 @@ datasource db {
 // 4- video do produto funcionando com o cpu-z
 // 7- Foi usada por mais de uma pessoa
 
+
+// preciso criar uma relação entre o produto e a categoria 
 model Product {
   id                Int    @id @default(autoincrement())
   typeHard          String
