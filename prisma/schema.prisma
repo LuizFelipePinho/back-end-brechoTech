@@ -28,3 +28,14 @@ model Product {
   videoHard         String
   usedHard          String
 }
+
+model Categorias {
+  id         String   @id @default(uuid())
+  hardwerEntrada String?
+  hardwerSaida  String?
+  hardwerProcessamento String?
+  hardwerArmazenamento String?
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  
+}
