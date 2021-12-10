@@ -28,3 +28,12 @@ model Product {
   videoHard         String
   usedHard          String
 }
+
+model User{
+  id  Int   @id @default(autoincrement())
+  nome String
+  email String @unique
+  regiao String
+  cpf     String
+  password String
+}
