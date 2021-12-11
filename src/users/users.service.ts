@@ -1,0 +1,82 @@
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
+import { User, Prisma } from '.prisma/client';
+import { PrismaService } from '../prisma.service';
+import * as bcypt from 'bcrypt';
+import { CreateUserDto } from './users.dto';
+
+@Injectable()
+export class UserService {
+  constructor(private db: PrismaService) {}
+
+  async createUser(data: CreateUserDto): Promise<User> {
+    const existing = await this.db.user.findUnique({
+      where: { email: data.email },
+    });
+
+    if (existing) {
+      throw new ConflictException(
+        'Este EMAIL já está cadastrado em nosso sistema',
+      );
+    }
+    const hashedPassword = await bcypt.hash(data.password, 8);
+    if (data.password != data.passwordconfirmation) {
+    }
+    const novodado = {
+      nome: data.nome,
+      email: data.email,
+      cpf: data.cpf,
+      regiao: data.regiao,
+      password: hashedPassword,
+    };
+
+    const user = await this.db.user.create({
+      data: novodado,
+    });
+    return user;
+  }
+  async findUniqueUser(id: number): Promise<User> {
+    const user = await this.db.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User nao foi encontrado');
+    }
+    return user;
+  }
+
+  async updateUser(id: number, data: CreateUserDto): Promise<User> {
+    const user = await this.db.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new NotFoundException('Usuário nao foi encontrado');
+    }
+
+    return await this.db.user.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async deleteUser(id: number): Promise<User> {
+    const userAuth = await this.db.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!userAuth) {
+      throw new NotFoundException();
+    }
+    return this.db.user.delete({
+      where: { id },
+    });
+  }
+}

@@ -29,6 +29,15 @@ model Product {
   usedHard          String
 }
 
+
+model User{
+  id  Int   @id @default(autoincrement())
+  nome String
+  email String @unique
+  regiao String
+  cpf     String
+  password String
+
 model Categorias {
   id         String   @id @default(uuid())
   hardwerEntrada String?
@@ -50,4 +59,5 @@ model Vendedor {
   reputation String
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now())
+
 }
