@@ -8,7 +8,13 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   // no imports chamamos o modulo de cada componente
-  imports: [ProductModule, CategoriasModule, VendedorModule, UserModule, AuthModule],
+  imports: [
+    ProductModule,
+    CategoriasModule,
+    VendedorModule,
+    UserModule,
+    AuthModule,
+  ],
   controllers: [],
   providers: [],
 })

@@ -10,13 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// 1- tipo de hardware
-// 2- modelo do hardware
-// 9 - Preço
-// 6- anos de uso
-// 3- fotos do produto
-// 4- video do produto funcionando com o cpu-z
-// 7- Foi usada por mais de uma pessoa
 
 model Product {
   id                Int    @id @default(autoincrement())
@@ -38,6 +31,7 @@ model User{
   cpf     String
   password String
 
+}
 model Categorias {
   id         String   @id @default(uuid())
   hardwerEntrada String?
