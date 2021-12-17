@@ -12,7 +12,7 @@ export class CategoriasController {
     return this.service.create(data);
   }
 
-  @Get('FIND')
+  @Get('find')
   findMany(): Promise<Categorias[]> {
     return this.service.findyMany();
   }

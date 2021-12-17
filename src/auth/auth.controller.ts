@@ -1,9 +1,8 @@
-import { Controller, Post, Body, Req, UseGuards, Get } from '@nestjs/common';
-import { User } from '.prisma/client';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import AuthUser from './auth-user.decorator';
 import { AuthService } from './auth.service';
-import { LoginDto, AuthResponse } from './auth.dto';
-import AuthUser from 'src/decorator/auth-user.decorator';
+import { LoginDto, AuthResponse } from './login.dto';
+import { User } from '@prisma/client';
 
 @Controller('auth')
 export class AuthController {
@@ -15,9 +14,7 @@ export class AuthController {
   }
 
   @Get('me')
-  @UseGuards(AuthGuard('jwt'))
   me(@AuthUser() user: User): User {
-    delete user.password;
     return user;
   }
 }
