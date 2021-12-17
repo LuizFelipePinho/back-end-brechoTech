@@ -31,6 +31,7 @@ export class UserService {
       cpf: data.cpf,
       regiao: data.regiao,
       password: hashedPassword,
+      role: data.role,
     };
 
     const user = await this.db.user.create({

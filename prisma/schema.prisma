@@ -30,6 +30,7 @@ model User{
   regiao String
   cpf     String
   password String
+  role String
 
 }
 model Categorias {
