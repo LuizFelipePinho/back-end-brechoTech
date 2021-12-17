@@ -10,16 +10,11 @@ import {
   UseGuards,
   Patch,
   ParseIntPipe,
-  ForbiddenException,
-  Query,
 } from '@nestjs/common';
-import { identity } from 'rxjs';
-import { User, Prisma } from '@prisma/client';
+import { User } from '@prisma/client';
 import { CreateUserDto } from './users.dto';
 import { UserService } from 'src/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
-import { UserRole } from './user-roles-enum';
-import { ReturnUserDto } from './return-user.dto';
 
 @Controller('users')
 export class userController {
