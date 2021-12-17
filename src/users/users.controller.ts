@@ -55,6 +55,3 @@ export class userController {
     return this.service.deleteUser(id);
   }
 }
-// function id(id: any, updateUser: CreateUserDto): User | PromiseLike<User> {
-//   throw new Error('Function not implemented.');
-// }

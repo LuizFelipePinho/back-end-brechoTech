@@ -27,7 +27,6 @@ export class ProductController {
     return this.productService.create(createProductDto);
   }
 
-  // @Role(UserRole.USER)
   @Get('/')
   findAll() {
     return this.productService.findAll();

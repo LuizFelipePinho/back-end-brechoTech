@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import AuthUser from 'src/decorator/auth-user.decorator';
+import AuthUser from './auth-user.decorator';
 import { AuthService } from './auth.service';
 import { LoginDto, AuthResponse } from './login.dto';
 import { User } from '@prisma/client';
