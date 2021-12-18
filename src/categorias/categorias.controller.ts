@@ -1,13 +1,15 @@
+import { ApiTags } from '@nestjs/swagger';
 import { CreateCategoriasDto } from './dto/create-categorias.dto';
 import { CategoriasService } from './categorias.service';
 import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
 import { Categorias } from '@prisma/client';
 
+@ApiTags('Category')
 @Controller('categorias')
 export class CategoriasController {
   constructor(private service: CategoriasService) {}
 
-  @Post('cat')
+  @Post('category')
   CreateCategoria(@Body() data: CreateCategoriasDto): Promise<Categorias> {
     return this.service.create(data);
   }

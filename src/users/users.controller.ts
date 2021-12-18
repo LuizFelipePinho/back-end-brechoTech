@@ -15,7 +15,9 @@ import { User } from '@prisma/client';
 import { CreateUserDto } from './users.dto';
 import { UserService } from 'src/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('User')
 @Controller('users')
 export class userController {
   constructor(private service: UserService) {}
@@ -29,6 +31,7 @@ export class userController {
 
   @UsePipes(ValidationPipe)
   @Post('/create')
+  @ApiBearerAuth()
   async createUser(@Body() createUser: CreateUserDto): Promise<User> {
     return this.service.createUser(createUser);
   }

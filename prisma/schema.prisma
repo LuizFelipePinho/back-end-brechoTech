@@ -10,11 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
-// preciso criar uma relação entre o produto e a categoria 
+// preciso criar uma relação entre o produto e a categoria
 model Product {
-  id                Int    @id @default(autoincrement())
+  id                Int         @id @default(autoincrement())
   typeHard          String
   modelHard         String
   priceHard         String
@@ -22,40 +20,47 @@ model Product {
   productPhotosHard String
   videoHard         String
   usedHard          String
+  User              User?       @relation(fields: [userId], references: [id])
+  userId            Int?
+  Categorias        Categorias? @relation(fields: [categoriasId], references: [id])
+  categoriasId      String?
+  Vendedor          Vendedor?   @relation(fields: [vendedorId], references: [id])
+  vendedorId        String?
 }
 
-
-model User{
-  id  Int   @id @default(autoincrement())
-  nome String
-  email String @unique
-  regiao String
-  cpf     String
+model User {
+  id       Int       @id @default(autoincrement())
+  nome     String
+  email    String    @unique
+  regiao   String
+  cpf      String
   password String
   role String @default("USER")
-
+  products Product[]
 }
+
 model Categorias {
-  id         String   @id @default(uuid())
-  hardwerEntrada String?
-  hardwerSaida  String?
+  id                   String    @id @default(uuid())
+  hardwerEntrada       String?
+  hardwerSaida         String?
   hardwerProcessamento String?
   hardwerArmazenamento String?
-  updatedAt  DateTime @updatedAt
-  createdAt  DateTime @default(now())
-  
+  updatedAt            DateTime  @updatedAt
+  createdAt            DateTime  @default(now())
+  products             Product[]
 }
 
 model Vendedor {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   name       String
-  email      String   @unique
+  email      String    @unique
   password   String
-  cpf        String   @unique
+  cpf        String    @unique
   region     String
   reputation String
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now())
   role String @default("VENDOR")
-
+  products   Product[]
 }
+

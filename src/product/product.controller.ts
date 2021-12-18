@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -15,6 +16,7 @@ import { Role } from 'src/auth/role.decorator';
 import { RolesGuard } from 'src/auth/role.guard';
 import { UserRole } from 'src/users/user-roles-enum';
 
+@ApiTags('Product')
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
