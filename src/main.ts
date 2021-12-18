@@ -6,11 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('app marketplace')
+    .setTitle('app Brecho Tech')
     .setDescription('The app API description')
     .setVersion('1.0')
     .addTag('vendedor')
-    .addTag('app')
+    .addTag('Product')
+    .addTag('Category')
+    .addTag('User')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
