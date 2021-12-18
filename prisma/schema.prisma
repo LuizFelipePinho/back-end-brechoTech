@@ -32,7 +32,7 @@ model User{
   regiao String
   cpf     String
   password String
-  role String
+  role String @default("USER")
 
 }
 model Categorias {
@@ -56,5 +56,6 @@ model Vendedor {
   reputation String
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now())
+  role String @default("VENDOR")
 
 }
