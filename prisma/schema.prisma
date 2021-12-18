@@ -35,7 +35,7 @@ model User {
   regiao   String
   cpf      String
   password String
-  role     String
+  role String @default("USER")
   products Product[]
 }
 
@@ -58,7 +58,9 @@ model Vendedor {
   cpf        String    @unique
   region     String
   reputation String
-  updatedAt  DateTime  @updatedAt
-  createdAt  DateTime  @default(now())
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  role String @default("VENDOR")
   products   Product[]
 }
+
