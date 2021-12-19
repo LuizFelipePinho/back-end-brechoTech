@@ -18,6 +18,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { email: payload.email },
     });
 
-    return user;
+    if (user) {
+      return user;
+    } else {
+      return await this.db.vendedor.findUnique({
+        where: { email: payload.email },
+      });
+    }
   }
 }

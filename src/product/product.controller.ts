@@ -23,7 +23,6 @@ export class ProductController {
 
   @Role(UserRole.VENDOR)
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  // precisa ser vendedor tbm
   @Post('create')
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);

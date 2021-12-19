@@ -9,7 +9,7 @@ export class AuthController {
   constructor(private service: AuthService) {}
 
   @Post('login')
-  LoginDto(@Body() data: LoginDto): Promise<AuthResponse> {
+  LoginDto(@Body() data: LoginDto) {
     return this.service.login(data);
   }
 
