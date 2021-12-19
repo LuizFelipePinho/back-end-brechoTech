@@ -16,6 +16,7 @@ import { CreateUserDto } from './users.dto';
 import { UserService } from 'src/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import AuthUser from 'src/auth/auth-user.decorator';
 
 @ApiTags('User')
 @Controller('users')
@@ -51,5 +52,15 @@ export class userController {
   @Delete('/delete/:id')
   deleteUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.service.deleteUser(id);
+  }
+
+  @Get('cart/:id')
+  @UseGuards(AuthGuard('jwt'))
+  associarProduct(
+    @AuthUser() user: User,
+    @Param('id') productId: number,
+  ): Promise<User> {
+    const userId = user.id;
+    return this.service.associarProduct(userId, productId);
   }
 }
