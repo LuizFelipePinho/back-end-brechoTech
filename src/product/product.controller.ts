@@ -15,6 +15,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { Role } from 'src/auth/role.decorator';
 import { RolesGuard } from 'src/auth/role.guard';
 import { UserRole } from 'src/users/user-roles-enum';
+import AuthVendor from 'src/auth/auth-vendor.decorator';
+import { Vendedor } from '@prisma/client';
 
 @ApiTags('Product')
 @Controller('product')
@@ -24,8 +26,12 @@ export class ProductController {
   @Role(UserRole.VENDOR)
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Post('create')
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+  create(
+    @Body() createProductDto: CreateProductDto,
+    @AuthVendor() vendor: Vendedor,
+  ) {
+    const vendorId = vendor.id;
+    return this.productService.create(createProductDto, vendorId);
   }
 
   @Get('/')
