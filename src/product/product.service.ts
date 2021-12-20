@@ -7,9 +7,20 @@ import { PrismaService } from 'src/prisma.service';
 export class ProductService {
   constructor(private db: PrismaService) {}
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, vendorId: string) {
     const data = createProductDto;
     const createProduct = await this.db.product.create({ data });
+
+    await this.db.vendedor.update({
+      where: { id: vendorId },
+      data: {
+        products: {
+          connect: {
+            id: createProduct.id,
+          },
+        },
+      },
+    });
 
     return createProduct;
   }

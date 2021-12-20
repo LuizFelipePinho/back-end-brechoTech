@@ -1,5 +1,5 @@
 import { IsString, Length } from 'class-validator';
-import { User } from '.prisma/client';
+import { User, Vendedor } from '.prisma/client';
 
 export class LoginDto {
   @IsString()
@@ -14,4 +14,5 @@ export class LoginDto {
 export class AuthResponse {
   token: string;
   user: User;
+  vendedor: Vendedor;
 }

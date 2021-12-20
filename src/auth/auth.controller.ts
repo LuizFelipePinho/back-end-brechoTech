@@ -3,18 +3,19 @@ import AuthUser from './auth-user.decorator';
 import { AuthService } from './auth.service';
 import { LoginDto, AuthResponse } from './login.dto';
 import { User } from '@prisma/client';
+import { ProfileDto } from './profile.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private service: AuthService) {}
 
   @Post('login')
-  LoginDto(@Body() data: LoginDto): Promise<AuthResponse> {
+  LoginDto(@Body() data: LoginDto) {
     return this.service.login(data);
   }
 
-  @Get('me')
-  me(@AuthUser() user: User): User {
-    return user;
+  @Get('profile')
+  profile(@Body() data: ProfileDto) {
+    return this.service.profile(data);
   }
 }
