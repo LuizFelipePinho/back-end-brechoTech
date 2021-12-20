@@ -1,5 +1,9 @@
+import { IsString, IsNumber } from 'class-validator';
+
 export class ProfileDto {
+  @IsNumber()
   id: number;
-  email: string;
+
+  @IsString()
   role: string;
 }

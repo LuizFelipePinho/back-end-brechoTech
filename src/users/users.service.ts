@@ -31,7 +31,6 @@ export class UserService {
       cpf: data.cpf,
       regiao: data.regiao,
       password: hashedPassword,
-      role: data.role,
     };
 
     const user = await this.db.user.create({
@@ -93,11 +92,16 @@ export class UserService {
       },
     });
 
-    return this.db.user.findUnique({
-      where: { id: Number(productId) },
+    const userProd = await this.db.user.findUnique({
+      where: { id: Number(userId) },
       include: {
         products: true,
       },
     });
+
+    if (!userProd) {
+      throw new NotFoundException('nao foi encontrado');
+    }
+    return userProd;
   }
 }

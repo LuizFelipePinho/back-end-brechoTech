@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   async profile(data: ProfileDto) {
-    const { id, email, role } = data;
+    const { id, role } = data;
 
     if (role === 'USER') {
       const user = await this.db.user.findUnique({

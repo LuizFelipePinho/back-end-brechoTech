@@ -31,9 +31,4 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   passwordconfirmation: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  role: string;
 }
