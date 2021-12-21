@@ -45,12 +45,14 @@ export class ProductController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Role(UserRole.VENDOR)
   @Put('update/:id')
   update(@Param('id') id: string, @Body() updateProductDto: CreateProductDto) {
     return this.productService.update(+id, updateProductDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Role(UserRole.VENDOR)
   @Delete('delete/:id')
   remove(@Param('id') id: number) {
     return this.productService.remove(+id);

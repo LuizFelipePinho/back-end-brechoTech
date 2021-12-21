@@ -32,7 +32,6 @@ export class userController {
 
   @UsePipes(ValidationPipe)
   @Post('/create')
-  @ApiBearerAuth()
   async createUser(@Body() createUser: CreateUserDto): Promise<User> {
     return this.service.createUser(createUser);
   }
