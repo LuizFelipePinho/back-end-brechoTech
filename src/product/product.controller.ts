@@ -1,4 +1,4 @@
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -25,6 +25,7 @@ export class ProductController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   // precisa ser vendedor tbm
   @Post('create')
+  @ApiBearerAuth()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
   }
@@ -41,6 +42,7 @@ export class ProductController {
 
   @UseGuards(AuthGuard('jwt'))
   @Put('update/:id')
+  @ApiBearerAuth()
   update(@Param('id') id: string, @Body() updateProductDto: CreateProductDto) {
     return this.productService.update(+id, updateProductDto);
   }

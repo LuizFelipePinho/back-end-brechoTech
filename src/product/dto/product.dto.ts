@@ -2,31 +2,52 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber } from 'class-validator';
 
 export class CreateProductDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Teclado',
+    description: `nome do produto.`,
+  })
   @IsString()
   typeHard: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Game',
+    description: `modelo do produto.`,
+  })
   @IsString()
   modelHard: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '$ 89.99',
+    description: `Preço do produto.`,
+  })
   @IsString()
   priceHard: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '1 ano',
+    description: `tempo de uso.`,
+  })
   @IsNumber()
   yearuseHard: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'imagem do ',
+    description: `utilizado para  cadastrar  hardwer de entrada.`,
+  })
   @IsString()
   productPhotosHard: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'video',
+    description: `deve colocar o link do video`,
+  })
   @IsString()
   videoHard: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'usado',
+    description: `informa se o  produto ja  foi usado`,
+  })
   @IsString()
   usedHard: string;
 }

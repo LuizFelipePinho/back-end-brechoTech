@@ -3,7 +3,10 @@ import { IsString, IsEmail } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: 'usado',
+    description: `informa se o  produto ja  foi usado`,
+  })
   @IsString({ message: 'Informe um nome de usuário válido' })
   name: string;
 
