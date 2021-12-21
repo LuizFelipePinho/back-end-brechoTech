@@ -1,7 +1,12 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma.service';
 import { AuthResponse, LoginDto } from './login.dto';
+import { ProfileDto } from './profile.dto';
 
 import * as bcrypt from 'bcrypt';
 
@@ -9,28 +14,79 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(private db: PrismaService, private jwt: JwtService) {}
 
-  async login(data: LoginDto): Promise<AuthResponse> {
+  async login(data: LoginDto) {
     const { email, password } = data;
 
     const user = await this.db.user.findUnique({
       where: { email },
     });
 
-    if (!user) {
-      throw new UnauthorizedException('Credenciais invalidas');
+    if (user) {
+      const passawordValid = await bcrypt.compare(password, user.password);
+
+      if (!passawordValid) {
+        throw new UnauthorizedException('Credenciais invalidas');
+      }
+
+      delete user.password;
+
+      return {
+        token: this.jwt.sign({ email }),
+        user,
+      };
     }
 
-    const passawordValid = await bcrypt.compare(password, user.password);
+    const vendedor = await this.db.vendedor.findUnique({
+      where: { email },
+    });
 
-    if (!passawordValid) {
-      throw new UnauthorizedException('Credenciais invalidas');
+    if (vendedor) {
+      const passawordValid = await bcrypt.compare(password, vendedor.password);
+
+      if (!passawordValid) {
+        throw new UnauthorizedException('Credenciais invalidas');
+      }
+
+      delete vendedor.password;
+
+      return {
+        token: this.jwt.sign({ email }),
+        vendedor,
+      };
     }
 
-    delete user.password;
+    if (!user && !vendedor) {
+      throw new UnauthorizedException('Credenciais invalidas');
+    }
+  }
 
-    return {
-      token: this.jwt.sign({ email }),
-      user,
-    };
+  async profile(data: ProfileDto) {
+    const { id, role } = data;
+
+    if (role === 'USER') {
+      const user = await this.db.user.findUnique({
+        where: { id },
+        include: {
+          products: true,
+        },
+      });
+
+      if (!user) {
+        throw new NotFoundException('User nao foi encontrado');
+      }
+      return user;
+    } else if (role === 'VENDOR') {
+      const vendor = await this.db.vendedor.findUnique({
+        where: { id: String(id) },
+        include: {
+          products: true,
+        },
+      });
+
+      if (!vendor) {
+        throw new NotFoundException('User nao foi encontrado');
+      }
+      return vendor;
+    }
   }
 }

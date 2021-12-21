@@ -3,7 +3,7 @@ import {
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
-import { User, Prisma } from '.prisma/client';
+import { User } from '.prisma/client';
 import { PrismaService } from '../prisma.service';
 import * as bcypt from 'bcrypt';
 import { CreateUserDto } from './users.dto';
@@ -31,7 +31,6 @@ export class UserService {
       cpf: data.cpf,
       regiao: data.regiao,
       password: hashedPassword,
-      role: data.role,
     };
 
     const user = await this.db.user.create({
@@ -79,5 +78,30 @@ export class UserService {
     return this.db.user.delete({
       where: { id },
     });
+  }
+
+  async associarProduct(userId: number, productId: number): Promise<User> {
+    await this.db.user.update({
+      where: { id: userId },
+      data: {
+        products: {
+          connect: {
+            id: Number(productId),
+          },
+        },
+      },
+    });
+
+    const userProd = await this.db.user.findUnique({
+      where: { id: Number(userId) },
+      include: {
+        products: true,
+      },
+    });
+
+    if (!userProd) {
+      throw new NotFoundException('nao foi encontrado');
+    }
+    return userProd;
   }
 }
