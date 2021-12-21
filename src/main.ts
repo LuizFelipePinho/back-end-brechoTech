@@ -6,9 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('app Brecho Tech')
+    .setTitle('Api Brecho Tech')
     .setDescription('The app API description')
     .setVersion('1.0')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'token' },
+      'ascesses-token',
+    )
     .addTag('vendedor')
     .addTag('Product')
     .addTag('Category')
