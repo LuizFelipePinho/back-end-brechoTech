@@ -27,16 +27,12 @@ export class ProductController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Post('create')
   @ApiBearerAuth()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
-
   create(
     @Body() createProductDto: CreateProductDto,
     @AuthVendor() vendor: Vendedor,
   ) {
     const vendorId = vendor.id;
     return this.productService.create(createProductDto, vendorId);
-
   }
 
   @Get('/')

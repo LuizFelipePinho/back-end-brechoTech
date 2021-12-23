@@ -15,7 +15,7 @@ import { User } from '@prisma/client';
 import { CreateUserDto } from './users.dto';
 import { UserService } from 'src/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import AuthUser from 'src/auth/auth-user.decorator';
 
 @ApiTags('User')
