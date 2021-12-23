@@ -49,12 +49,4 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   passwordconfirmation: string;
-
-  @ApiProperty({
-    example: 'User',
-    description: `informa se e user ou vendor`,
-  })
-  @IsString()
-  @IsNotEmpty()
-  role: string;
 }

@@ -10,9 +10,11 @@ import {
   UseGuards,
   Patch,
   ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { CreateUserDto } from './users.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserService } from 'src/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
@@ -27,7 +29,7 @@ export class userController {
   @UsePipes(ValidationPipe)
   @Get(':id')
   findUnique(@Param('id') id: number): Promise<User> {
-    return this.service.findUniqueUser(id);
+    return this.service.findUniqueUser(Number(id));
   }
 
   @UsePipes(ValidationPipe)
@@ -37,7 +39,7 @@ export class userController {
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Patch('updateUser/:id')
+  @Put('updateUser/:id')
   @UsePipes(ValidationPipe)
   async updateUser(
     @Param('id', ParseIntPipe) id: number,

@@ -1,23 +1,29 @@
-import { UserRole } from '../user-roles-enum';
-import { IsString, IsEmail } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
-  @ApiProperty({
-    example: 'usado',
-    description: `informa se o  produto ja  foi usado`,
-  })
-  @IsString({ message: 'Informe um nome de usuário válido' })
-  name: string;
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  nome: string;
 
   @ApiProperty()
-  @IsEmail({}, { message: 'Informe um endereço de email válido' })
+  @IsString()
+  @IsEmail()
   email: string;
 
   @ApiProperty()
-  @IsString({ message: 'Confirme a senha, por favor' })
-  passawordconfirmation: string;
+  @IsString()
+  @IsNotEmpty()
+  regiao: string;
 
   @ApiProperty()
-  role: UserRole;
+  @IsString()
+  @IsNotEmpty()
+  cpf: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 }
