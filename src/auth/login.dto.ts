@@ -1,5 +1,4 @@
 import { IsString, Length } from 'class-validator';
-import { User } from '.prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 import { User, Vendedor } from '.prisma/client';
 

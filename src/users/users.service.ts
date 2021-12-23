@@ -7,6 +7,7 @@ import { User } from '.prisma/client';
 import { PrismaService } from '../prisma.service';
 import * as bcypt from 'bcrypt';
 import { CreateUserDto } from './users.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -38,6 +39,7 @@ export class UserService {
     });
     return user;
   }
+
   async findUniqueUser(id: number): Promise<User> {
     const user = await this.db.user.findUnique({
       where: { id },
@@ -51,7 +53,7 @@ export class UserService {
 
   async updateUser(id: number, data: CreateUserDto): Promise<User> {
     const user = await this.db.user.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!user) {
@@ -59,7 +61,7 @@ export class UserService {
     }
 
     return await this.db.user.update({
-      where: { id },
+      where: { id: Number(id) },
       data,
     });
   }
