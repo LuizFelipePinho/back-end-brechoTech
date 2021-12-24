@@ -24,6 +24,26 @@ export class CategoriasController {
     return this.service.findUnique(id);
   }
 
+  @Get('/input')
+  findCategory() {
+    return this.service.findCategory();
+  }
+
+  @Get('/output')
+  findOutput() {
+    return this.service.findOutput();
+  }
+
+  @Get('/processing')
+  findProcessing() {
+    return this.service.findProcessing();
+  }
+
+  @Get('/storage')
+  findStorage() {
+    return this.service.findStorage();
+  }
+
   @Delete('delete/:id')
   deleteOne(@Param('id') id: string): Promise<{ message: string }> {
     return this.service.deleteOne(id);
