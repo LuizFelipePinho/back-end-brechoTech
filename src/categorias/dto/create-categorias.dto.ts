@@ -5,23 +5,23 @@ export class CreateCategoriasDto {
     example: 'Teclado',
     description: `utilizado para  cadastrar  hardwer de entrada.`,
   })
-  hardwerEntrada?: string;
+  hardwerEntrada?: boolean;
 
   @ApiProperty({
     example: 'monitor',
     description: `cadastrar  hardwer de saida .`,
   })
-  hardwerSaida?: string;
+  hardwerSaida?: boolean;
 
   @ApiProperty({
     example: 'Processador',
     description: `utilizado para  cadastrar  hardwer de processamento.`,
   })
-  hardwerProcessamento?: string;
+  hardwerProcessamento?: boolean;
 
   @ApiProperty({
     example: 'Memoria',
     description: `utilizado para  cadastrar  hardwer de Armazenamento.`,
   })
-  hardwerArmazenamento?: string;
+  hardwerArmazenamento?: boolean;
 }

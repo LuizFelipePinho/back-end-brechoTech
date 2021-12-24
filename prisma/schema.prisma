@@ -41,10 +41,10 @@ model User {
 
 model Categorias {
   id                   String    @id @default(uuid())
-  hardwerEntrada       String?
-  hardwerSaida         String?
-  hardwerProcessamento String?
-  hardwerArmazenamento String?
+  hardwerEntrada       Boolean @default(false)
+  hardwerSaida         Boolean @default(false)
+  hardwerProcessamento Boolean @default(false)
+  hardwerArmazenamento Boolean @default(false)
   updatedAt            DateTime  @updatedAt
   createdAt            DateTime  @default(now())
   products             Product[]

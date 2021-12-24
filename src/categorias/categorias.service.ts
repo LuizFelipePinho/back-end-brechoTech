@@ -27,6 +27,70 @@ export class CategoriasService {
     return categoria;
   }
 
+  async findCategory() {
+    const producToCategory = await this.database.categorias.findMany({
+      where: {
+        hardwerEntrada: true,
+      },
+      include: {
+        products: {
+          include: {
+            Vendedor: true,
+          },
+        },
+      },
+    });
+    return producToCategory;
+  }
+
+  async findOutput() {
+    const producToCategory = await this.database.categorias.findMany({
+      where: {
+        hardwerSaida: true,
+      },
+      include: {
+        products: {
+          include: {
+            Vendedor: true,
+          },
+        },
+      },
+    });
+    return producToCategory;
+  }
+
+  async findProcessing() {
+    const producToCategory = await this.database.categorias.findMany({
+      where: {
+        hardwerProcessamento: true,
+      },
+      include: {
+        products: {
+          include: {
+            Vendedor: true,
+          },
+        },
+      },
+    });
+    return producToCategory;
+  }
+
+  async findStorage() {
+    const producToCategory = await this.database.categorias.findMany({
+      where: {
+        hardwerArmazenamento: true,
+      },
+      include: {
+        products: {
+          include: {
+            Vendedor: true,
+          },
+        },
+      },
+    });
+    return producToCategory;
+  }
+
   async deleteOne(id: string): Promise<{ message: string }> {
     await this.database.categorias.delete({
       where: { id },

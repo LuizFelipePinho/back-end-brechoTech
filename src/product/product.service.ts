@@ -22,6 +22,55 @@ export class ProductService {
       },
     });
 
+    // faço uma verificação para saber qual o tipo de hardware
+    // faço um create na tabela de categorias passando o id do produto se conecatando com o tipo de hardware que veio da request
+    // posso criar uma função que vai setar true no tipo de hardaware passado como parametro
+    if (data.typeHard === 'input') {
+      await this.db.categorias.create({
+        data: {
+          hardwerEntrada: true,
+          products: {
+            connect: {
+              id: createProduct.id,
+            },
+          },
+        },
+      });
+    } else if (data.typeHard === 'output') {
+      await this.db.categorias.create({
+        data: {
+          hardwerSaida: true,
+          products: {
+            connect: {
+              id: createProduct.id,
+            },
+          },
+        },
+      });
+    } else if (data.typeHard === 'processing') {
+      await this.db.categorias.create({
+        data: {
+          hardwerProcessamento: true,
+          products: {
+            connect: {
+              id: createProduct.id,
+            },
+          },
+        },
+      });
+    } else if (data.typeHard === 'storage') {
+      await this.db.categorias.create({
+        data: {
+          hardwerArmazenamento: true,
+          products: {
+            connect: {
+              id: createProduct.id,
+            },
+          },
+        },
+      });
+    }
+
     return createProduct;
   }
 
