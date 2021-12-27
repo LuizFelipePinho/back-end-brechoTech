@@ -208,6 +208,30 @@ precisa estar logado como usuário</br>
 
 https://back-end-brech-tech.herokuapp.com/users/cart/id
 
+</br></br>
+
+**Rotas de categorias**
+
+Busca todos os produtos da categoria input (entrada)</br>
+Método: GET</br>
+https://back-end-brech-tech.herokuapp.com/categorias/input</br>
+
+</br>
 
 
+Busca todos os produtos da categoria output (saída)</br>
+Método: GET</br>
+https://back-end-brech-tech.herokuapp.com/categorias/output</br>
 
+</br>
+
+
+Busca todos os produtos da categoria processing (processamento)</br>
+Método: GET</br>
+https://back-end-brech-tech.herokuapp.com/categorias/processing</br>
+
+</br>
+
+Busca todos os produtos da categoria storage (armazenamento)</br>
+Método: GET</br>
+https://back-end-brech-tech.herokuapp.com/categorias/storage</br>

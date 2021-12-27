@@ -57,7 +57,7 @@ model Vendedor {
   password   String
   cpf        String    @unique
   region     String
-  reputation String
+  reputation String?
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now())
   role String @default("VENDOR")
