@@ -16,7 +16,7 @@ export class AuthController {
     return this.service.login(data);
   }
 
-  @Get('profile')
+  @Post('profile')
   profile(@Body() data: ProfileDto) {
     return this.service.profile(data);
   }
