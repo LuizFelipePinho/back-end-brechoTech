@@ -63,6 +63,10 @@ export class AuthService {
   async profile(data: ProfileDto) {
     const { id, role } = data;
 
+    if (!id || !role) {
+      throw new NotFoundException('Data is empty');
+    }
+
     if (role === 'USER') {
       const user = await this.db.user.findUnique({
         where: { id },
