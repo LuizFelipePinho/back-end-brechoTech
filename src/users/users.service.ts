@@ -24,13 +24,13 @@ export class UserService {
       );
     }
     const hashedPassword = await bcypt.hash(data.password, 8);
-    if (data.password != data.passwordconfirmation) {
+    if (data.password != data.passwordConfirmation) {
     }
     const novodado = {
-      nome: data.nome,
+      nome: data.name,
       email: data.email,
       cpf: data.cpf,
-      regiao: data.regiao,
+      regiao: data.region,
       password: hashedPassword,
     };
 

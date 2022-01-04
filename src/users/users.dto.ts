@@ -8,7 +8,7 @@ export class CreateUserDto {
   })
   @IsString()
   @IsNotEmpty()
-  nome: string;
+  name: string;
 
   @ApiProperty({
     example: 'Maria123@gmail.com',
@@ -17,22 +17,6 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   email: string;
-
-  @ApiProperty({
-    example: 'Belo Horizonte',
-    description: `informe a regiao usuario`,
-  })
-  @IsString()
-  @IsNotEmpty()
-  regiao: string;
-
-  @ApiProperty({
-    example: '123456789',
-    description: `informe o cpf do usuario`,
-  })
-  @IsString()
-  @IsNotEmpty()
-  cpf: string;
 
   @ApiProperty({
     example: 'ls12345',
@@ -48,5 +32,21 @@ export class CreateUserDto {
   })
   @IsString()
   @IsNotEmpty()
-  passwordconfirmation: string;
+  passwordConfirmation: string;
+
+  @ApiProperty({
+    example: '123456789',
+    description: `informe o cpf do usuario`,
+  })
+  @IsString()
+  @IsNotEmpty()
+  cpf: string;
+
+  @ApiProperty({
+    example: 'Belo Horizonte',
+    description: `informe a regiao usuario`,
+  })
+  @IsString()
+  @IsNotEmpty()
+  region: string;
 }
