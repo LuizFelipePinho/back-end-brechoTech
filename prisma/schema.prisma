@@ -26,6 +26,8 @@ model Product {
   categoriasId      String?
   Vendedor          Vendedor?   @relation(fields: [vendedorId], references: [id])
   vendedorId        String?
+  updatedAt            DateTime  @updatedAt
+  createdAt            DateTime  @default(now())
 }
 
 model User {
@@ -37,6 +39,8 @@ model User {
   password String
   role String @default("USER")
   products Product[]
+  updatedAt            DateTime  @updatedAt
+  createdAt            DateTime  @default(now())
 }
 
 model Categorias {
