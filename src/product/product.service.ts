@@ -75,9 +75,26 @@ export class ProductService {
   }
 
   async findAll(): Promise<Product[]> {
-    const products = await this.db.product.findMany();
+    const products = await this.db.product.findMany({
+      include: {
+        Vendedor: true,
+      },
+    });
 
     return products;
+
+    // const producToCategory = await this.database.categorias.findMany({
+    //   where: {
+    //     hardwerArmazenamento: true,
+    //   },
+    //   include: {
+    //     products: {
+    //       include: {
+    //         Vendedor: true,
+    //       },
+    //     },
+    //   },
+    // });
   }
 
   async findOne(id: number) {
