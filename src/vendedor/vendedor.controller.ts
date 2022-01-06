@@ -16,7 +16,7 @@ import { Role } from 'src/auth/role.decorator';
 import { RolesGuard } from 'src/auth/role.guard';
 import { UserRole } from 'src/users/user-roles-enum';
 
-@ApiTags('vendedor')
+@ApiTags('Seller')
 @Controller('vendedor')
 export class VendedorController {
   constructor(private service: VendedorService) {}
