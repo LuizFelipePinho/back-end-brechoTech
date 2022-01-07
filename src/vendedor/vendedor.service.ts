@@ -6,23 +6,27 @@ import {
 import { Prisma, Vendedor } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { CreateVendedorDto } from './dto/create-vendedor.dto';
 
 @Injectable()
 export class VendedorService {
   constructor(private db: PrismaService) {}
 
-  async create(data: Prisma.VendedorCreateInput): Promise<Vendedor> {
+  async create(data: CreateVendedorDto): Promise<Vendedor> {
     const vendedorExists = await this.db.vendedor.findUnique({
       where: { cpf: data.cpf },
     });
 
-    if (vendedorExists) {
-      throw new ConflictException('CPF já está cadastrado');
+    const vendorEmail = await this.db.vendedor.findUnique({
+      where: { email: data.email },
+    });
+
+    if (vendedorExists || vendorEmail) {
+      throw new ConflictException('CPF ou email já está cadastrado');
     }
 
     const salt = 10;
     const hashedPassword = await bcrypt.hash(data.password, salt);
-
     const vendedor = await this.db.vendedor.create({
       data: {
         ...data,
