@@ -36,10 +36,4 @@ export class CreateVendedorDto {
     description: `informar regiao`,
   })
   region: string;
-
-  @ApiProperty({
-    example: '5',
-    description: `usuario informa nota do vendedor`,
-  })
-  reputation: string;
 }
