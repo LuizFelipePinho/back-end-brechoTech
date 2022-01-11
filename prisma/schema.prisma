@@ -20,6 +20,7 @@ model Product {
   productPhotosHard String
   videoHard         String
   usedHard          String
+  description       String
   User              User?       @relation(fields: [userId], references: [id])
   userId            Int?
   Categorias        Categorias? @relation(fields: [categoriasId], references: [id])
@@ -28,6 +29,7 @@ model Product {
   vendedorId        String?
   updatedAt            DateTime  @updatedAt
   createdAt            DateTime  @default(now())
+
 }
 
 model User {
