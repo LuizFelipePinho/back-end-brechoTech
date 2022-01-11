@@ -22,9 +22,6 @@ export class ProductService {
       },
     });
 
-    // faço uma verificação para saber qual o tipo de hardware
-    // faço um create na tabela de categorias passando o id do produto se conecatando com o tipo de hardware que veio da request
-    // posso criar uma função que vai setar true no tipo de hardaware passado como parametro
     if (data.typeHard === 'input') {
       await this.db.categorias.create({
         data: {
@@ -82,24 +79,14 @@ export class ProductService {
     });
 
     return products;
-
-    // const producToCategory = await this.database.categorias.findMany({
-    //   where: {
-    //     hardwerArmazenamento: true,
-    //   },
-    //   include: {
-    //     products: {
-    //       include: {
-    //         Vendedor: true,
-    //       },
-    //     },
-    //   },
-    // });
   }
 
   async findOne(id: number) {
     const product = await this.db.product.findUnique({
       where: { id: id },
+      include: {
+        Vendedor: true,
+      },
     });
 
     if (!product) {

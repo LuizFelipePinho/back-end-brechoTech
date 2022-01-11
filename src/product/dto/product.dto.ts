@@ -50,4 +50,12 @@ export class CreateProductDto {
   })
   @IsString()
   usedHard: string;
+
+  @ApiProperty({
+    example:
+      'O produto não funciona muito bem acima de 50 graus então adicione um cooler potente',
+    description: `Informe características do produto`,
+  })
+  @IsString()
+  description;
 }
