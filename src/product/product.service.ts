@@ -82,24 +82,14 @@ export class ProductService {
     });
 
     return products;
-
-    // const producToCategory = await this.database.categorias.findMany({
-    //   where: {
-    //     hardwerArmazenamento: true,
-    //   },
-    //   include: {
-    //     products: {
-    //       include: {
-    //         Vendedor: true,
-    //       },
-    //     },
-    //   },
-    // });
   }
 
   async findOne(id: number) {
     const product = await this.db.product.findUnique({
       where: { id: id },
+      include: {
+        Vendedor: true,
+      },
     });
 
     if (!product) {
