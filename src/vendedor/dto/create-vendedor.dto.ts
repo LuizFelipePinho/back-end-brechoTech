@@ -3,37 +3,37 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateVendedorDto {
   @ApiProperty({
     example: 'Maria',
-    description: `informa o nome do vendedor`,
+    description: `Register the vendor  name`,
   })
   name: string;
 
   @ApiProperty({
     example: 'maria_luiza@gmail.com',
-    description: `informa o email do vendedor`,
+    description: `register the vendor email`,
   })
   email: string;
 
   @ApiProperty({
     example: '123456ml',
-    description: `informa senha `,
+    description: `register a password `,
   })
   password: string;
 
   @ApiProperty({
     example: '123456ml',
-    description: `confimar a senha `,
+    description: `Confirm the password `,
   })
   passwordConfirmation: string;
 
   @ApiProperty({
     example: '123456789',
-    description: `informar cpf do vendedor`,
+    description: `Register the vendor CPF`,
   })
   cpf: string;
 
   @ApiProperty({
     example: 'Rio de janeiro',
-    description: `informar regiao`,
+    description: `Register the vendor region`,
   })
   region: string;
 }

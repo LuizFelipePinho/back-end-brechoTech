@@ -3,58 +3,57 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class CreateProductDto {
   @ApiProperty({
-    example: 'Teclado',
-    description: `nome do produto.`,
+    example: 'input',
+    description: `product category`,
   })
   @IsString()
   typeHard: string;
 
   @ApiProperty({
-    example: 'Game',
-    description: `modelo do produto.`,
+    example: 'teclado',
+    description: `product name`,
   })
   @IsString()
   modelHard: string;
 
   @ApiProperty({
     example: '$ 89.99',
-    description: `Preço do produto.`,
+    description: `product price`,
   })
   @IsString()
   priceHard: string;
 
   @ApiProperty({
-    example: '1 ano',
-    description: `tempo de uso.`,
+    example: '1 year',
+    description: `Product used time`,
   })
   @IsNumber()
   yearuseHard: number;
 
   @ApiProperty({
-    example: 'imagem do ',
-    description: `utilizado para  cadastrar  hardwer de entrada.`,
+    example: 'image of product',
+    description: `Register input hardware`,
   })
   @IsString()
   productPhotosHard: string;
 
   @ApiProperty({
-    example: 'video',
-    description: `deve colocar o link do video`,
+    example: 'Video',
+    description: `Video URL`,
   })
   @IsString()
   videoHard: string;
 
   @ApiProperty({
-    example: 'usado',
-    description: `informa se o  produto ja  foi usado`,
+    example: 'second',
+    description: `Informe if the product was already used`,
   })
   @IsString()
   usedHard: string;
 
   @ApiProperty({
-    example:
-      'O produto não funciona muito bem acima de 50 graus então adicione um cooler potente',
-    description: `Informe características do produto`,
+    example: 'works normally',
+    description: `Inform product description`,
   })
   @IsString()
   description;
