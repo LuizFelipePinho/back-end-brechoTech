@@ -5,7 +5,7 @@ import { User, Vendedor } from '.prisma/client';
 export class LoginDto {
   @ApiProperty({
     example: 'pepe156@gmail.com',
-    description: `O email sera utitizado para logar na conta.`,
+    description: `The email registered will be the credentials  to login to the account.`,
   })
   @IsString()
   @Length(8, 30)
@@ -13,7 +13,7 @@ export class LoginDto {
 
   @ApiProperty({
     example: '12345hj',
-    description: `A senha para acessar a conta .`,
+    description: `The password registered will be the credentials  to login tothe account.`,
   })
   @IsString()
   @Length(8, 14)

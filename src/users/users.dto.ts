@@ -4,7 +4,7 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export class CreateUserDto {
   @ApiProperty({
     example: 'Maria',
-    description: `informe o nome do usuario`,
+    description: `Register the user name`,
   })
   @IsString()
   @IsNotEmpty()
@@ -12,7 +12,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: 'Maria123@gmail.com',
-    description: `informe o email do usuario`,
+    description: `Register the user email`,
   })
   @IsString()
   @IsNotEmpty()
@@ -20,7 +20,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: 'ls12345',
-    description: `informe senha do usuario`,
+    description: `register the user password`,
   })
   @IsString()
   @IsNotEmpty()
@@ -28,7 +28,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: 'ls12345',
-    description: `confirme a senha do usuario novamente `,
+    description: `Confirm the user password `,
   })
   @IsString()
   @IsNotEmpty()
@@ -36,7 +36,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: '123456789',
-    description: `informe o cpf do usuario`,
+    description: `Register the user CPF`,
   })
   @IsString()
   @IsNotEmpty()
@@ -44,7 +44,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: 'Belo Horizonte',
-    description: `informe a regiao usuario`,
+    description: `Register the user region`,
   })
   @IsString()
   @IsNotEmpty()

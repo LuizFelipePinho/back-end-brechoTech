@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
@@ -26,7 +26,10 @@ export class ProductController {
   @Role(UserRole.VENDOR)
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Post('create')
-  @ApiBearerAuth()
+  @ApiOperation({
+    summary:
+      'Description: Route to create a product. To access this route the user must be logged on the site. Also the user needs to have a vendor register to be able to access this route.',
+  })
   create(
     @Body() createProductDto: CreateProductDto,
     @AuthVendor() vendor: Vendedor,
@@ -36,11 +39,13 @@ export class ProductController {
   }
 
   @Get('/')
+  @ApiOperation({ summary: 'Description: Get all products' })
   findAll() {
     return this.productService.findAll();
   }
 
   @Get('find/:id')
+  @ApiOperation({ summary: 'Description: Get a product by id ' })
   findOne(@Param('id') id: string) {
     return this.productService.findOne(+id);
   }
@@ -48,7 +53,10 @@ export class ProductController {
   @UseGuards(AuthGuard('jwt'))
   @Role(UserRole.VENDOR)
   @Put('update/:id')
-  @ApiBearerAuth()
+  @ApiOperation({
+    summary:
+      'Description: Route to update a product. To access this route the user must be logged on the site. Also the user needs to have a vendor register to be able to access this route.',
+  })
   update(@Param('id') id: string, @Body() updateProductDto: CreateProductDto) {
     return this.productService.update(+id, updateProductDto);
   }
@@ -56,6 +64,10 @@ export class ProductController {
   @UseGuards(AuthGuard('jwt'))
   @Role(UserRole.VENDOR)
   @Delete('delete/:id')
+  @ApiOperation({
+    summary:
+      'Description: Route to delete a product. To access this route the user must be logged on the site. Also the user needs to have a vendor register to be able to access this route.',
+  })
   remove(@Param('id') id: number) {
     return this.productService.remove(+id);
   }

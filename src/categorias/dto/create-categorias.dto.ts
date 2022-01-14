@@ -2,26 +2,26 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCategoriasDto {
   @ApiProperty({
-    example: 'Teclado',
-    description: `utilizado para  cadastrar  hardwer de entrada.`,
+    example: 'input',
+    description: `Register input hardware`,
   })
   hardwerEntrada?: boolean;
 
   @ApiProperty({
-    example: 'monitor',
-    description: `cadastrar  hardwer de saida .`,
+    example: 'output',
+    description: `Register output hardware`,
   })
   hardwerSaida?: boolean;
 
   @ApiProperty({
-    example: 'Processador',
-    description: `utilizado para  cadastrar  hardwer de processamento.`,
+    example: 'Processing',
+    description: `Register Processing hardware`,
   })
   hardwerProcessamento?: boolean;
 
   @ApiProperty({
-    example: 'Memoria',
-    description: `utilizado para  cadastrar  hardwer de Armazenamento.`,
+    example: 'storage',
+    description: `Register storage hardware`,
   })
   hardwerArmazenamento?: boolean;
 }

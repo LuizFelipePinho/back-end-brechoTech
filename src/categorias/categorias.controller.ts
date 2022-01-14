@@ -1,4 +1,4 @@
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { CreateCategoriasDto } from './dto/create-categorias.dto';
 import { CategoriasService } from './categorias.service';
 import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
@@ -25,21 +25,34 @@ export class CategoriasController {
   }
 
   @Get('/input')
+  @ApiOperation({ summary: 'Search all products from the input category' })
   findCategory() {
     return this.service.findCategory();
   }
 
   @Get('/output')
+  @ApiOperation({
+    summary:
+      'Description: This route searches all products from the output category.',
+  })
   findOutput() {
     return this.service.findOutput();
   }
 
   @Get('/processing')
+  @ApiOperation({
+    summary:
+      'Description:This route searches all products from the processing category.',
+  })
   findProcessing() {
     return this.service.findProcessing();
   }
 
   @Get('/storage')
+  @ApiOperation({
+    summary:
+      'Description:This route searches all products from the storage category.',
+  })
   findStorage() {
     return this.service.findStorage();
   }
