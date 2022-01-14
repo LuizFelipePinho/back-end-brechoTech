@@ -55,7 +55,7 @@ export class userController {
     return this.service.deleteUser(id);
   }
 
-  @Get('cart/:id')
+  @Post('cart/:id')
   @UseGuards(AuthGuard('jwt'))
   associarProduct(
     @AuthUser() user: User,
