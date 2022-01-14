@@ -68,11 +68,14 @@ export class userController {
     return this.service.deleteUser(id);
   }
 
+
   @Get('cart/:id')
   @ApiOperation({
     summary:
       'Description:  This route allows the user to add products to the cart by id.',
   })
+
+  @Post('cart/:id')
   @UseGuards(AuthGuard('jwt'))
   associarProduct(
     @AuthUser() user: User,
