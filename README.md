@@ -1,6 +1,9 @@
-# Brechó Tech 
+
  
-<img src="img\logo_brechotech.png"/>
+<div align="center">
+ <img src="https://user-images.githubusercontent.com/66444962/149533473-929e5d49-82ef-4d25-a0fa-6b932448617c.png" width="300px"/>
+</div>
+
  
 > This project represents a marketplace and it works as a thrift shop. The vendors offer second hand hardware and the buyers will be able to find hardware at affordable prices. This software was built to become a solution in the hardware market related to a computer component problem. Due to this lack of hardware on the market, the price of new products has become increasingly inaccessible to the majority of the Brazilian population that is interested in getting this type of product.
 This API is consumed by SPA consuming, applying the following technologies : Nodejs, Prisma and SQL as a database.
